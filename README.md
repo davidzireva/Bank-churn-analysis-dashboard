@@ -3,8 +3,6 @@ ANALYSIS USING SQL
 
 Account information for 10,000 customers at a European bank, including details on their credit score, balance, products, and whether they have churned.
 
-(the Bank_Churn_Messy.xslx file is included for those completing the Bank Customer Data Prep guided project)
-
 Recommended Analysis
 
 
@@ -24,12 +22,10 @@ What types of segments exist within the bank's customers?
 
 DATA CLEANING:
 
-The data was loaded into Mysql workbench where empty rows were checked, and the find and replace tool used to rename the outcome column from binary value 0 and 1 to non-diabetic and diabetic respectively.
+The data was loaded into Mysql workbench where empty rows , duplicates were checked.
 
 DATA ANALYSIS:
 
-The data set was then imported into sequel (SQL) for analysis.
+The data set was then imported into (SQL) for analysis.
 
 DATA VISUALIZATION: The data was visualized with Power BI.
-
-Full documentation here: https://medium.com/@nwokorie.maureen01/diabetes-prediction-analysis-among-women-in-india-using-sql-and-excel-e682ef2257ed
