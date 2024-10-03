@@ -2,7 +2,6 @@
 
 USE bank_customer_churn_analysis;
 
--- previewing all the data
 SELECT *
 FROM bank_churn; # 10000 records;
 
@@ -14,7 +13,7 @@ FROM bank_churn
 WHERE geography = 'France')
 SELECT count(*) 
 FROM cte
-WHERE exited = '0';# 4204
+WHERE exited = '1';# 4204
 
 -- Spanish customers who left the bank
 
@@ -24,7 +23,7 @@ FROM bank_churn
 WHERE geography = 'Spain')
 SELECT count(*)
 FROM cte
-WHERE exited = '0';  # 2064 records
+WHERE exited = '1';  # 2064 records
 
 -- German customers who left the bank
 WITH cte AS
@@ -33,7 +32,7 @@ FROM bank_churn
 WHERE geography = 'Germany')
 SELECT count(*) 
 FROM cte
-WHERE exited = '0'; # 1695 records
+WHERE exited = '1'; # 1695 records
 
 -- creating a new table with categorised columns
 CREATE TABLE bank_churn_analysis AS
@@ -60,19 +59,17 @@ WHEN EstimatedSalary > 150000 THEN 'Very high'
 END AS 'Salary', Exited
 FROM bank_churn);
 
--- Data Analysis
-
 -- to ascertain the relationship between credit scores and customer churn rate.
 SELECT Credit_score, count(*) CS
 FROM  bank_churn_analysis
-WHERE Exited = 0
+WHERE Exited = 1
 GROUP BY Credit_score
 ORDER BY CS DESC; # Majority of customers leaving the bank have credit scores between 580 and 670.
 
 -- to ascertain the relationship between age and customer churn rate.
 SELECT`AGE CATEGORY` , count(*) Age
 FROM  bank_churn_analysis
-WHERE Exited = 0
+WHERE Exited = 1
 GROUP BY `AGE CATEGORY`
 ORDER BY AGE DESC; # customers in the age group less than 40 are leaving the bank the most.
 
@@ -87,6 +84,6 @@ ORDER BY BC DESC; # Customers with low account balance are likely to leave the b
 
 SELECT Salary , count(*) Pay
 FROM  bank_churn_analysis
-WHERE Exited = 0
+WHERE Exited = 1
 GROUP BY Salary
-ORDER BY Pay DESC; # Customers who earn salaries between 100000 and 150000 are likely to leave the bank.
+ORDER BY Pay DESC; # Customers who earn salaries above 15000 are likely to leave the bank.
